@@ -8,8 +8,10 @@ for f in fonts img js; do
     aws s3 sync $R/larry/$f s3://www.ogrodnek.com/larry/$f --cache-control max-age=3600 --profile ogrodnek
 done
 
-aws s3 sync $R/larry/css s3://www.ogrodnek.com/larry/css --cache-control max-age=600 --profile ogrodnek
-aws s3 sync $R/ s3://www.ogrodnek.com/ --exclude "*" --include "*.html" --cache-control max-age=600 --profile ogrodnek
+# bootstrap CSS online right now so can cache for awhile
+aws s3 sync $R/larry/css s3://www.ogrodnek.com/larry/css --cache-control max-age=3600 --profile ogrodnek
+
+aws s3 sync $R/ s3://www.ogrodnek.com/ --exclude "*" --include "*.html" --cache-control max-age=900 --profile ogrodnek
 
 
 # Cloudfront invalidation of main HTML
